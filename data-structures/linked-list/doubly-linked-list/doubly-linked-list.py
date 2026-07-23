@@ -100,7 +100,7 @@ class DoublyLinkedList:
             if self.size == 1:
                 self.tail = None
             self.size -= 1
-            return removed
+            return removed.value
         
         removed = self.get(index)
         removed.prev.next = removed.next
@@ -127,3 +127,27 @@ class DoublyLinkedList:
 
     def __str__(self):
         return " <-> ".join(str(value) for value in self) + " <-> None"
+    
+# instantiation 
+if __name__ == "__main__":
+    dll = DoublyLinkedList()
+
+    dll.append(20)
+    dll.append(30)
+    dll.prepend(10)
+
+    print(dll)                     # 10 <-> 20 <-> 30 <-> None
+    print(len(dll))                # 3
+
+    print(dll.get(1).value)        # 20
+    print(dll.find(30).value)      # 30
+
+    dll.insert(2, 25)
+    print(dll)                     # 10 <-> 20 <-> 25 <-> 30 <-> None
+
+    removed = dll.remove(1)
+    print(f"Removed: {removed}")   # 20
+    print(dll)                     # 10 <-> 25 <-> 30 <-> None
+
+    for value in dll:
+        print(value)
